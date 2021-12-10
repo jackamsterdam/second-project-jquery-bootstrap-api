@@ -21,30 +21,43 @@
             <div class="col-5">
                 <h1>Header TODO</h1>
             </div>
-
         </div>
-        <!-- sticky-top  put this clas on navbar -->
-        <div class="row justify-content-between ">
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p>Home </p>
-                <div class="text-right">toggle button </div>
-                <p>Live Reports </p>
-                <p>About </p>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <input type="text" name="search" id="search" class="search" placeholder="Search">
+        <!-- nav nav-pills -->
+
+        <!-- <div class="row"> -->
+        <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2"> -->
+        <nav class="navbar sticky-top navbar-expand navbar-light bg-light">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="#">Live Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./about.html">About</a>
+                </li>
+            </ul>
+            <form class="form-inline  my-2 my-lg-0">
+                <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" name="search" id="search" placeholder="Search">
+                <!-- more options: btn-sm btn-lg  -->
                 <!-- <div class="d-flex justify-content-center">...</div> -->
-                <button type="button" class=" btn btn-outline-success search-btn" id="search-btn" name="search-btn">Search</button>
-                <button type="button" class=" btn btn-outline-success search-btn btn-sm" id="search-btn" name="search-btn">Search</button>
-                <button type="button" class=" btn btn-outline-success search-btn btn-lg" id="search-btn" name="search-btn">Search</button>
+                <button type="button" class="btn btn-outline-success my-2 my-sm-0 search-btn" id="search-btn" name="search-btn">Search</button>
+            </form>
+        </nav>
+        <!-- </div> -->
+        <!-- </div> -->
 
-            </div>
-        </div>
+
+
+
+
 
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3 col-xl-2">
                 <div>BTC</div>
                 <div>Bitcoin </div>
+                <div class="text-right">toggle button </div>
                 <button type="button" class="btn btn-primary" id="more-info-btn" name="more-info-btn">More Info</button>
                 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsePrices" aria-expanded="false" aria-controls="collapsePrices" id="more-info-btn" name="more-info-btn">More Info</button>
 
@@ -101,20 +114,6 @@
 
 
 
-
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <a class="navbar-brand">Navbar</a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
 
 
 
