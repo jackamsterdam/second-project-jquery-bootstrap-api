@@ -15,101 +15,432 @@
 
 <body>
     <!-- Attach to container or to body on load? -->
-    <div class="container">
 
-        <div class="row text-left">
-            <div class="col-5">
-                <h1>Header TODO</h1>
-            </div>
-        </div>
-        <!-- nav nav-pills -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
 
-        <!-- <div class="row"> -->
-        <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2"> -->
-        <nav class="navbar sticky-top navbar-expand navbar-light bg-light">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-nowrap" href="#">Live Reports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./about.html">About</a>
-                </li>
-            </ul>
-            <form class="form-inline  my-2 my-lg-0">
-                <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" name="search" id="search" placeholder="Search">
-                <!-- more options: btn-sm btn-lg  -->
-                <!-- <div class="d-flex justify-content-center">...</div> -->
-                <button type="button" class="btn btn-outline-success my-2 my-sm-0 search-btn" id="search-btn" name="search-btn">Search</button>
-            </form>
-        </nav>
-        <!-- </div> -->
-        <!-- </div> -->
+            <!-- <div class="jumbotron"> -->
+            <h1 class="display-4">Cryptonite</h1>
+            <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" height="50">
+            <!-- </div> -->
 
 
+            <!-- nav nav-pills -->
+
+            <!-- <div class="row"> -->
+            <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2"> -->
+            <nav class="navbar sticky-top navbar-expand navbar-light bg-light">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-nowrap" href="#">Live Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html">About</a>
+                    </li>
+                </ul>
+                <form class="form-inline  my-2 my-lg-0">
+                    <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" name="search" id="search" placeholder="Search">
+                    <!-- more options: btn-sm btn-lg  -->
+                    <!-- <div class="d-flex justify-content-center">...</div> -->
+                    <button type="button" class="btn btn-outline-success my-2 my-sm-0 search-btn" id="search-btn" name="search-btn">Search</button>
+                </form>
+            </nav>
+            <!-- </div> -->
+            <!-- </div> -->
 
 
 
 
-        <div class="row">
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <div>BTC</div>
-                <div>Bitcoin </div>
-                <div class="text-right">toggle button </div>
-                <button type="button" class="btn btn-primary" id="more-info-btn" name="more-info-btn">More Info</button>
-                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsePrices" aria-expanded="false" aria-controls="collapsePrices" id="more-info-btn" name="more-info-btn">More Info</button>
 
-                <div class="collapse" id="collapsePrices">
-                    <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
-                    <!-- <div class="card card-body"> -->
-                    <img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579" alt="btc pic">
-                    <!-- <img src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" alt="btc pic">
-                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic"> -->
-                    <div>USD: $43,000</div>
-                    <div>Eur: $50,000</div>
-                    <div>ILS: $200,000</div>
-                    <!-- </div> -->
+
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch2">
+                            <label class="custom-control-label" for="customSwitch2"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices14" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices14">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch3">
+                            <label class="custom-control-label" for="customSwitch3"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices2" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices2">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch4">
+                            <label class="custom-control-label" for="customSwitch4"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices3" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices3">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch5">
+                            <label class="custom-control-label" for="customSwitch5"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices4" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices4">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch6">
+                            <label class="custom-control-label" for="customSwitch6"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices5" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices5">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch7">
+                            <label class="custom-control-label" for="customSwitch7"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices6" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices6">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch8">
+                            <label class="custom-control-label" for="customSwitch8"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices7" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices7">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch9">
+                            <label class="custom-control-label" for="customSwitch9"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices8" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices8">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch10">
+                            <label class="custom-control-label" for="customSwitch10"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices9" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices9">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch11">
+                            <label class="custom-control-label" for="customSwitch11"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices10" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices10">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch12">
+                            <label class="custom-control-label" for="customSwitch12"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices11" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices11">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch13">
+                            <label class="custom-control-label" for="customSwitch13"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices12" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices12">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                    <!-- Can change the color of the card  -->
+                    <div class="card text-white bg-warning mb-3 border-info">
+                        <div class="custom-control custom-switch text-right">
+                            <input type="checkbox" class="custom-control-input " id="customSwitch14">
+                            <label class="custom-control-label" for="customSwitch14"></label>
+                        </div>
+                        <div class="card-body ">
+
+                            <h5 class="card-title text-black-50">BTC</h5>
+                            <p class="card-text text-black-50 ">Bitcoin</p>
+
+                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#collapsePrices13" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapsePrices13">
+                        <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                        <div class="card text-white bg-success mb-3 border-warning">
+
+                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
+
+                            <div class="card-body ">
+                                <p class="card-text text-nowrap">USD: $43,000</p>
+                                <p class="card-text text-nowrap">Eur: €43,000</p>
+                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p class="text-lg-right">Much content in here </p>
-                <p class="text-warning bg-info text-right">Much content in here </p>
-                <p class="text wrap text-lowercase font-weight-bold font-italic text-decoration-none">Much content in here </p>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p class="font-weight-bold text-primary">Much content in here </p>
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-            </div>
-            <!-- got to max  -->
-            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-            </div>
 
 
-
+            </div>
         </div>
+        <!-- This outer div is the jumbotrons  -->
     </div>
 
 
@@ -120,12 +451,10 @@
 
 
 
-
-
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js " integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js " integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k " crossorigin="anonymous "></script>
 </body>
 
 </html>
