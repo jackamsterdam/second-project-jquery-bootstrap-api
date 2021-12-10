@@ -4,9 +4,8 @@ https://github.com/jackamsterdam/second-project-jquery-bootstrap-api.git
 
 Github link to gitbhub website with this project https://jackamsterdam.github.io/second-project-jquery-bootstrap-api/
 
-
 Starter template taken from bootstrap website:
-https://getbootstrap.com/docs/5.1/getting-started/introduction/
+https://getbootstrap.com/docs/5.1/getting-started/introduction
 Bootstrap docs info:
 https://getbootstrap.com/docs/4.1/layout/grid/#mix-and-match
 

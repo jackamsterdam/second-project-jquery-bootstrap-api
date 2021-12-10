@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+    <!-- Attach to container or to body on load? -->
     <div class="container">
 
         <div class="row text-left">
@@ -23,8 +23,8 @@
             </div>
 
         </div>
-
-        <div class="row justify-content-between">
+        <!-- sticky-top  put this clas on navbar -->
+        <div class="row justify-content-between ">
             <div class="col-12 col-md-4 col-lg-3 col-xl-2">
                 <p>Home </p>
                 <div class="text-right">toggle button </div>
@@ -33,7 +33,10 @@
             </div>
             <div class="col-12 col-md-4 col-lg-3 col-xl-2">
                 <input type="text" name="search" id="search" class="search" placeholder="Search">
-                <button type="button" class="btn btn-primary search-btn" id="search-btn" name="search-btn">Search</button>
+                <!-- <div class="d-flex justify-content-center">...</div> -->
+                <button type="button" class=" btn btn-outline-success search-btn" id="search-btn" name="search-btn">Search</button>
+                <button type="button" class=" btn btn-outline-success search-btn btn-sm" id="search-btn" name="search-btn">Search</button>
+                <button type="button" class=" btn btn-outline-success search-btn btn-lg" id="search-btn" name="search-btn">Search</button>
 
             </div>
         </div>
@@ -43,12 +46,26 @@
                 <div>BTC</div>
                 <div>Bitcoin </div>
                 <button type="button" class="btn btn-primary" id="more-info-btn" name="more-info-btn">More Info</button>
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapsePrices" aria-expanded="false" aria-controls="collapsePrices" id="more-info-btn" name="more-info-btn">More Info</button>
+
+                <div class="collapse" id="collapsePrices">
+                    <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
+                    <!-- <div class="card card-body"> -->
+                    <img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579" alt="btc pic">
+                    <!-- <img src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" alt="btc pic">
+                    <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic"> -->
+                    <div>USD: $43,000</div>
+                    <div>Eur: $50,000</div>
+                    <div>ILS: $200,000</div>
+                    <!-- </div> -->
+                </div>
+
 
             </div>
             <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p>Much content in here </p>
-                <p>Much content in here </p>
-                <p>Much content in here </p>
+                <p class="text-lg-right">Much content in here </p>
+                <p class="text-warning bg-info text-right">Much content in here </p>
+                <p class="text wrap text-lowercase font-weight-bold font-italic text-decoration-none">Much content in here </p>
             </div>
             <div class="col-12 col-md-4 col-lg-3 col-xl-2">
                 <p>Much content in here </p>
@@ -56,7 +73,7 @@
                 <p>Much content in here </p>
             </div>
             <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                <p>Much content in here </p>
+                <p class="font-weight-bold text-primary">Much content in here </p>
                 <p>Much content in here </p>
                 <p>Much content in here </p>
             </div>
@@ -85,7 +102,19 @@
 
 
 
-
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">Navbar</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
 
 
 
