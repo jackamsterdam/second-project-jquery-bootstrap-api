@@ -1,3 +1,7 @@
+Check out my other branch - git switch into it - for the jQuery way- another way to display "more info" button using event.currentTarget on every "more info" button instead of using Bootstrap's' data attributes to toggle down the crypto "more info" box.
+
+
+
 Additional info:
 Github link to repository
 https://github.com/jackamsterdam/second-project-jquery-bootstrap-api.git
