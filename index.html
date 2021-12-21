@@ -102,16 +102,30 @@
                 <!-- </div> -->
             </div>
 
-            <div class="row" id="liveReports" style="display: none;">
-                <div class="col-12 col-md-4 col-lg-3 col-xl-2" id="appendajaxLiveReport">
 
-                    live reports graph
+
+            
+            <div class="row" id="liveReports" style="display: none;">
+                <div class="col-12" id="appendajaxLiveReport">
+
+                   
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                 </div>
             </div>
 
+
+
+
+
+
             <div class="row" id="aboutMe" style="display: none;">
-                <div class="col-12 col-md-4 col-lg-3 col-xl-2" id="appendajaxAboutMe">
-                    about me
+                <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2" id="appendajaxAboutMe"> -->
+                <div class="col-12" id="appendajaxAboutMe">
+                   
+                        <div class="text-img">
+                           <!-- <figure><img src="images/toy_img.png" alt="#"/></figure> -->
+                       
+                     </div>
                 </div>
             </div>
 
@@ -204,30 +218,33 @@
 
 
 
+   <!-- jquery cdn:  -->
+   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-
-    <!-- jquery cdn:  -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+ <!-- Canvas.js script for graph:  -->
+ <!-- <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> -->
+ <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 
     <!-- Bootstrap CDN doesnt have all of jquerys functionality so I commented it out  -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script> -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js " integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut " crossorigin="anonymous "></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js " integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k " crossorigin="anonymous "></script>
 
 
+     
+
     <!-- jquery ui  -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
+ 
+
+   
 
 
+    
     <script type="module" src="app.js"></script>
 
     <script>

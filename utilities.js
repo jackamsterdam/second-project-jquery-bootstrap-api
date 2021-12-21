@@ -7,6 +7,7 @@
 
 
 export function setToLocalStorage(dataFromAPI) {
+    //You could have initialized to an empty array instead of adding moreInfoArr on start of program 
     //first get the arr from localStorage
     let arrFromLocalStorage = localStorage.getItem('moreInfoArr')
     let parsedArrFromLocalStorage = JSON.parse(arrFromLocalStorage)

@@ -4,10 +4,13 @@ import {setToLocalStorage} from './utilities.js'
 
 
 localStorage.setItem('moreInfoArr', JSON.stringify([]))
-let coinsForGraph = []
+let coinsForGraph = ['btc', 'eth','ltc', 'link', 'doge']
+// let coinsForGraph 
 let coins = [];
 let toggleBtnCount = 0
 let booleanToggle = true
+// count for graph:
+let count = 0
 
 
 
@@ -209,6 +212,7 @@ $(() => {
 
 
                 function getCoinDetailsFromAPI() {
+                    //THis setTimout simulates a half second delay for the Api in order to show a progress bar
                     setTimeout(() => {
                             $.ajax({
                                     url: `https://api.coingecko.com/api/v3/coins/${originalId}`,  //the id not symbol
@@ -394,8 +398,190 @@ $(`<div class="modal-dialog modal-dialog-centered" role="document">
 
 
   
+  //Logic for Graph:
+//   let graphTimeId = setTimeout(() => {
+    setInterval(() => {
+        console.log('count', count)
+      coinsForGraph = coinsForGraph.map(coin => coin.toUpperCase())
+      console.log("coinsForGraph", coinsForGraph);
+      
+      let one = coinsForGraph[0]
+      let two = coinsForGraph[1]
+      let three = coinsForGraph[2]
+      let four = coinsForGraph[3]
+      let five = coinsForGraph[4]
+      console.log('five', five)
+     
+      $.get({
+          url: `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${one},${two},${three},${four},${five}&tsyms=USD`,
+          method: 'GET'
+      }).then(data => {
+
+          onFiveCoinDataRecieved(data, one, two, three, four, five)
+      })
+   
+    }, 10000)
+
+      function onFiveCoinDataRecieved(data, one, two, three, four, five) {
+        //   debugger
+          console.log('data', data)
+          console.log(data[one].USD)
+          console.log(data[two].USD)
+          console.log(data[three].USD)
+          console.log(data[four].USD)
+          console.log(data[five].USD)
+
+          let obj = {
+            x: new Date(),
+            y: data[one].USD
+        }
 
 
+    
+
+let options = {
+	exportEnabled: true,
+	animationEnabled: true,
+	title:{
+		text: `${one}, ${two}, ${three}, ${four}, ${five} to USD`
+	},
+	subtitles: [{
+		text: "Click Legend to Hide or Unhide Data Series"
+	}],
+	axisX: {
+		title: "Time",
+        titleFontColor: "#4F81BC",
+		lineColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		tickColor: "#4F81BC"
+	},
+	axisY: {
+		title: "Coin Value",
+		titleFontColor: "#4F81BC",
+		lineColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		tickColor: "#4F81BC"
+	},
+	axisY2: {
+		title: "Profit in USD",
+		titleFontColor: "#C0504E",
+		lineColor: "#C0504E",
+		labelFontColor: "#C0504E",
+		tickColor: "#C0504E"
+	},
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		name: `${one}`,
+		showInLegend: true,
+		xValueFormatString: "MMM YYYY",
+		yValueFormatString: "$#,##0",
+		dataPoints: [
+			// { x: undefined,  y: undefined },
+			// { x: undefined,  y: undefined },
+			// { x: undefined, y: undefined },
+			// { x: new Date(), y: data[one].USD },
+			// { x: new Date(2016, 3, 1),  y: 103 },
+			// { x: new Date(2016, 4, 1),  y: 93 },
+			// { x: new Date(2016, 5, 1),  y: 129 },
+			// { x: new Date(2016, 6, 1), y: 143 },
+			// { x: new Date(2016, 7, 1), y: 156 },
+			// { x: new Date(2016, 8, 1),  y: 122 },
+			// { x: new Date(2016, 9, 1),  y: 106 },
+			// { x: new Date(2016, 10, 1),  y: 137 },
+			// { x: new Date(2016, 11, 1), y: 142 }
+		]
+	},
+	// {
+	// 	type: "spline",
+	// 	name: "Profit",
+	// 	axisYType: "secondary",
+	// 	showInLegend: true,
+	// 	xValueFormatString: "MMM YYYY",
+	// 	yValueFormatString: "$#,##0.#",
+	// 	dataPoints: [
+	// 		{ x: new Date(2016, 0, 1),  y: 19034.5 },
+	// 		{ x: new Date(2016, 1, 1), y: 20015 },
+	// 		{ x: new Date(2016, 2, 1), y: 27342 },
+	// 		{ x: new Date(2016, 3, 1),  y: 20088 },
+	// 		{ x: new Date(2016, 4, 1),  y: 20234 },
+	// 		{ x: new Date(2016, 5, 1),  y: 29034 },
+	// 		{ x: new Date(2016, 6, 1), y: 30487 },
+	// 		{ x: new Date(2016, 7, 1), y: 32523 },
+	// 		{ x: new Date(2016, 8, 1),  y: 20234 },
+	// 		{ x: new Date(2016, 9, 1),  y: 27234 },
+	// 		{ x: new Date(2016, 10, 1),  y: 33548 },
+	// 		{ x: new Date(2016, 11, 1), y: 32534 }
+	// 	]
+	// }
+]
+};
+// doesnt work: 
+// let date = new Date()
+// let currentSecond = date.toLocaleTimeString('it-IT')
+
+
+
+options.data[0].dataPoints.push(obj)
+// options.data[0].dataPoints[0].x = new Date()
+// options.data[0].dataPoints[0].y =  data[one].USD
+
+
+// options.data[0].dataPoints[1].x = new Date()
+// options.data[0].dataPoints[1].y =  data[one].USD
+
+// options.data[0].dataPoints[2].x = new Date()
+// options.data[0].dataPoints[2].y =  data[one].USD
+
+
+
+
+
+
+
+
+
+// options.data[0].dataPoints[0].x = new Date(2016, 0, 1)    // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[1].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[2].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[3].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[4].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+                               
+//   options.data[0].dataPoints[0].y = 120  // 48572.68   data[one].USD
+//   options.data[1].dataPoints[0].y   // 48572.68   data[two].USD
+//   options.data[2].dataPoints[0].y   // 48572.68   data[three].USD
+//   options.data[3].dataPoints[0].y   // 48572.68   data[four].USD
+//   options.data[4].dataPoints[0].y   // 48572.68   data[five].USD
+   
+
+$("#chartContainer").CanvasJSChart(options);
+function toggleDataSeries(e) {
+    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+    } else {
+        e.dataSeries.visible = true;
+    }
+    e.chart.render();
+}
+
+
+
+          
+    
+      }
+
+
+
+    
+
+
+ 
 
 
 

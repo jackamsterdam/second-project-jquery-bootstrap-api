@@ -28,3 +28,13 @@ Additional important:
 Create github repo, vscode, open git kraken to see GUI progress
 
 If you click the more info button in less than 2 minutes the data will be sent from local storage and no calls to the API will be made. But more than 2 minutes the local storage with that specific coin will dissapear and a new call to the API will be made once more info is clicked.
+
+This app is responsive to the following sizes: 
+
+Small devices (landscape phones, 576px and up)
+
+Medium devices (tablets, 768px and up)
+
+Large devices (desktops, 992px and up)
+
+Extra large devices (large desktops, 1200px and up)
