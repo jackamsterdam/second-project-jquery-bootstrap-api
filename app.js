@@ -1,3 +1,9 @@
+// import {setItemForLocalStorage} from './utilities.js'
+
+import arr = require("jshint/data/non-ascii-identifier-start");
+
+
+
 let coinsForGraph = []
 let coins = [];
 let toggleBtnCount = 0
@@ -164,31 +170,134 @@ $(() => {
                 $('.progressbar').show()
                 $( ".progressbar" ).progressbar({
                     // value: 37
-                    // value: Math.floor( Math.random() * 100 )
                     value: false
                   });
 
                 $('#' + val).empty() // so won't be two cards underneath
                 console.log("event", event);
                 // debugger
-        let originalId = event.target.id.substring(3)
+            //    let originalId = event.target.id.substring(3)
+
+            //      if (arrOfLocalStorage.length === 0)
+            //      //getcoinsarr from localStorage
+            //      //haha cool if the coin is not there than obviously that more than 2 minutes passed so we should call the get api function
+            //      let found = arrOfLocalStorage.find(coin.symbol)
+            //      if (found) {
+            //          //grab the '---data---' from localStorage
+            //      } else {
+            //          //call the API function cause if not found then more than 2 minutes passed for that specific coin.
+            //          getCoinDetailsFromAPI()
+            //      }
+            //    setTimeout(() => {
+            //     getCoinDetailsFromAPI()
+                
+            //    }, 120000)
        
 
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
         //   getcoinsfrom localstorage logic + progressbar logic
-        let timeoutId = setTimeout(() => {
-                $.ajax({
-                        url: `https://api.coingecko.com/api/v3/coins/${originalId}`,  //the id not symbol
-                        method: 'GET'
-                    })
-                    .then(data => {
-                        onCoinReceived(data)
-                    })
-                    $('.progressbar').hide()          //?Dont forget to add this in the logic of the other two pages
-                }, 500);
+//The arr for local storage has nothing to do with the togglebtn arr coinsForGraph BTW
+        //  if () {
+
+            //This is what you local storage data should look like
+            // localStorageArr = [data, data, data]
+// let data = {
+//     id: "0-5x-long-algorand-token",
+//     market_data: {
+//         current_price: {
+//             usd: 89,
+//             eur: 74,
+//             ils: 34
+//         }
+//     },
+//     image: {
+//         large:  "https://assets.coingecko.com/coi00.jpg?154704158"
+//     }
+// }
+        // localStorageArr.filter(coin => coin.id === )
+        //     //  onCoinReceived(data)
+        //     onCoinReceived(localStorageArr[0])
+        //  }
+
+    //     setItemForLocalStorage([])
+    //     function setItemForLocalStorage(arr) {
+           
+    //        localStorage.setItem('coinsFromApi', JSON.stringify(arr))
+    //    }
+
+       function setToLocalStorage(dataFromAPI) {
+           //first get the arr from localStorage
+           let arrFromLocalStorage = localStorage.getItem('moreInfoArr')
+
+           let data = {
+                id: dataFromAPI.id,
+                symbol: dataFromAPI.symbol,
+                market_data: {
+                    current_price: {
+                        usd: dataFromAPI.market_data.current_price.usd,
+                        eur: dataFromAPI.market_data.current_price.eur,
+                        ils: dataFromAPI.market_data.current_price.ils
+                    }
+                },
+                image: {
+                    large:  dataFromAPI.image.large
+                }
+           }
+            console.log('data', data)
+
+         let stringifiedData = JSON.stringify(data)
+         console.log("stringifiedData", stringifiedData);
+
+
+        //  let dataSymbol = data.symbol
+         localStorage.setItem(data.symbol, stringifiedData)
+        
+        //  after 2 minutes gets deleted from local storage 
+         setTimeout(() => {
+             localStorage.removeItem(data.symbol)
+         },120000)
+// debugger
+       }
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DELETE THISSSSSSSSSSSSSSSSS
+        // S
+
+        // S
+        // S
+        // SS
+        // S
+       getCoinDetailsFromAPI()
+         // S
+
+        // S
+        // S
+        // SS
+        // S
+     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DELETE THISSSSSSSSSSSSSSSSS
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+                function getCoinDetailsFromAPI() {
+                    setTimeout(() => {
+                            $.ajax({
+                                    url: `https://api.coingecko.com/api/v3/coins/${originalId}`,  //the id not symbol
+                                    method: 'GET'
+                                })
+                                .then(data => {
+                                    //every new call gets put into setLocalStorage and passes info to DOM
+                                    // But you would not even get here if the coin was found in localstorage - meaining 2 minutes have not passed 
+                                    setToLocalStorage(data)
+                                    onCoinReceived(data)
+                                    
+                                })
+                                // .then(data => {
+                                //     onCoinReceived(data)
+                                // })
+                                $('.progressbar').hide()          //?Dont forget to add this in the logic of the other two pages
+                            }, 500);
+               //end of getCoinnDetailsFromAPI function
+                }
                 
-            //End of after clicking more info button
-            })
+  //End of after clicking more info button
+  })
 
 
             // *********************Still in forEach loop******************************************************
@@ -248,6 +357,7 @@ $(() => {
     
     function onCoinReceived(data) {
     //    debugger
+    console.log('dataoncoinReceived', data)
         let val = 'id-' + data.id
         if (!data.market_data.current_price.usd) {
             $(`<div class="card text-white bg-success mb-3 border-warning">
@@ -261,8 +371,6 @@ $(() => {
             </div>
         </div>`).appendTo('#' + val)
         } else {
-
-
 
 
         $(`<div class="card text-white bg-success mb-3 border-warning">
