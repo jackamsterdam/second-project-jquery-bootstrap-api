@@ -6,11 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="https://media-exp1.licdn.com/dms/image/C5603AQHmX8cZGgr7YA/profile-displayphoto-shrink_100_100/0/1614775409537?e=1644451200&v=beta&t=cYbBX4oaUlRs2jTUir0ei4a5j3dCsvrgUm09Jgk87KQ" type="image/x-icon">
-    <title></title>
+
+      <!-- jquery css   -->
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+      <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  
+
+    <title>2nd project ajax jquery</title>
 </head>
 
 <body>
@@ -60,8 +67,9 @@
             <!-- Later create git switch branch with jquery way using event.currentTarget instaed of bootstrap data attributes  -->
             <!-- <div class="collapse" id="collapsePrices1"> -->
             <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
-
+            <div class="progressbar"></div>
             <div class="row" id="homeBox">
+                
                 <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2">
                     
                     <div class="card text-white bg-warning mb-3 border-info">
@@ -89,7 +97,8 @@
                                 <p class="card-text text-nowrap">Eur: €43,000</p>
                                 <p class="card-text text-nowrap">ILS: ₪43,000</p>
                             </div>
-                        </div> -->
+                    </div> -->
+
                 <!-- </div> -->
             </div>
 
@@ -108,9 +117,6 @@
 
             <!-- container end  -->
         </div>
-
-
-
         <!-- This outer div is the jumbotrons -end  -->
     </div>
 
@@ -130,14 +136,15 @@
     <!-- modal code to be triggered:   -->
     <!-- Button trigger modal -->
     <!-- Need to change this button to be the toggle button  -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <!-- This buttton is in my javascript code  -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="myModal" >
         Launch demo modal
-      </button>
+      </button> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <!-- //you can center it  with modal dialog centerdd -->
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title " id="exampleModalLabel">To add **inject coin** to the list you must uncheck at least one of the other coins</h5>
@@ -149,7 +156,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <!-- Use array to populate these fields ! -->
+                               
                                 <h5 class="">BTC-You need to inject what was chosen here</h5>
                                 <span class="custom-control custom-switch text-right">
                                     <input type="checkbox" class="custom-control-input" id="customSwitch222">
@@ -175,7 +182,7 @@
                                     <input type="checkbox" class="custom-control-input " id="customSwitch1">
                                     <label class="custom-control-label" for="customSwitch1"></label>
                                 </span>
-                                <!-- <p>This <a href="# " role="button" class="btn btn-secondary popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p> -->
+                              
 
                             </div>
                         </div>
@@ -186,9 +193,9 @@
                     <button type="button" class="btn btn-primary ">Save changes</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-
+  
 
 
 
@@ -208,11 +215,19 @@
     <!-- jquery cdn:  -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+
     <!-- Bootstrap CDN doesnt have all of jquerys functionality so I commented it out  -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js " integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut " crossorigin="anonymous "></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js " integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k " crossorigin="anonymous "></script>
+
+
+    <!-- jquery ui  -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+
+
     <script src="app.js "></script>
 
     <script>
