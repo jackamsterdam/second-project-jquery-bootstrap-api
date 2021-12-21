@@ -1,7 +1,5 @@
 Check out my other branch - git switch into it - for the jQuery way- another way to display "more info" button using event.currentTarget on every "more info" button instead of using Bootstrap's' data attributes to toggle down the crypto "more info" box.
 
-
-
 Additional info:
 Github link to repository
 https://github.com/jackamsterdam/second-project-jquery-bootstrap-api.git
@@ -13,19 +11,11 @@ https://getbootstrap.com/docs/5.1/getting-started/introduction
 Bootstrap docs info:
 https://getbootstrap.com/docs/4.1/layout/grid/#mix-and-match
 
-
-
-
-
 Additional comments:
 
 Added photo from linkedin for favicon
 
-
-
-
-
-Important: 
+Important:
 
 Have a premade css file to see clearly the borders and background color of all the rows and columns.
 
@@ -33,7 +23,8 @@ Always draw out your html first.
 
 Then draw out where your API data should go.
 
-
-Additional important: 
+Additional important:
 
 Create github repo, vscode, open git kraken to see GUI progress
+
+If you click the more info button in less than 2 minutes the data will be sent from local storage and no calls to the API will be made. But more than 2 minutes the local storage with that specific coin will dissapear and a new call to the API will be made once more info is clicked.

@@ -1,9 +1,9 @@
-// import {setItemForLocalStorage} from './utilities.js'
-
-import arr = require("jshint/data/non-ascii-identifier-start");
+import {setToLocalStorage} from './utilities.js'
 
 
 
+
+localStorage.setItem('moreInfoArr', JSON.stringify([]))
 let coinsForGraph = []
 let coins = [];
 let toggleBtnCount = 0
@@ -167,114 +167,47 @@ $(() => {
               // functionality of more info button  
               //url takes the id not the symbol for individual coins
             $('#' + val).on('show.bs.collapse', function(event) {
-                $('.progressbar').show()
-                $( ".progressbar" ).progressbar({
-                    // value: 37
-                    value: false
-                  });
+               
 
                 $('#' + val).empty() // so won't be two cards underneath
                 console.log("event", event);
                 // debugger
-            //    let originalId = event.target.id.substring(3)
+               let originalId = event.target.id.substring(3)
+               console.log("originalId", originalId);
 
-            //      if (arrOfLocalStorage.length === 0)
-            //      //getcoinsarr from localStorage
-            //      //haha cool if the coin is not there than obviously that more than 2 minutes passed so we should call the get api function
-            //      let found = arrOfLocalStorage.find(coin.symbol)
-            //      if (found) {
-            //          //grab the '---data---' from localStorage
-            //      } else {
-            //          //call the API function cause if not found then more than 2 minutes passed for that specific coin.
-            //          getCoinDetailsFromAPI()
-            //      }
-            //    setTimeout(() => {
-            //     getCoinDetailsFromAPI()
+               //Logic in utilities.js - We want to grab data from API if more than 2 minutes have passed, otherwise we take the info form localStorage
+               getCoinFromLocalStorage(originalId)
+               function getCoinFromLocalStorage(originalId) {
+                let arrFromLocalStorage = localStorage.getItem('moreInfoArr')
+                let parsedArrFromLocalStorage = JSON.parse(arrFromLocalStorage)
                 
-            //    }, 120000)
-       
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-        //   getcoinsfrom localstorage logic + progressbar logic
-//The arr for local storage has nothing to do with the togglebtn arr coinsForGraph BTW
-        //  if () {
-
-            //This is what you local storage data should look like
-            // localStorageArr = [data, data, data]
-// let data = {
-//     id: "0-5x-long-algorand-token",
-//     market_data: {
-//         current_price: {
-//             usd: 89,
-//             eur: 74,
-//             ils: 34
-//         }
-//     },
-//     image: {
-//         large:  "https://assets.coingecko.com/coi00.jpg?154704158"
-//     }
-// }
-        // localStorageArr.filter(coin => coin.id === )
-        //     //  onCoinReceived(data)
-        //     onCoinReceived(localStorageArr[0])
-        //  }
-
-    //     setItemForLocalStorage([])
-    //     function setItemForLocalStorage(arr) {
-           
-    //        localStorage.setItem('coinsFromApi', JSON.stringify(arr))
-    //    }
-
-       function setToLocalStorage(dataFromAPI) {
-           //first get the arr from localStorage
-           let arrFromLocalStorage = localStorage.getItem('moreInfoArr')
-
-           let data = {
-                id: dataFromAPI.id,
-                symbol: dataFromAPI.symbol,
-                market_data: {
-                    current_price: {
-                        usd: dataFromAPI.market_data.current_price.usd,
-                        eur: dataFromAPI.market_data.current_price.eur,
-                        ils: dataFromAPI.market_data.current_price.ils
-                    }
-                },
-                image: {
-                    large:  dataFromAPI.image.large
+            
+                let isCoinInArrFromLocalStorage = parsedArrFromLocalStorage.some(coin => coin.id === originalId)
+                console.log("isCoinInArrFromLocalStorage", isCoinInArrFromLocalStorage);
+            
+                if (isCoinInArrFromLocalStorage) {
+                     //grab the '---data---' from localStorage
+                 let coinDataFromLocalStorage = parsedArrFromLocalStorage.filter(coin => coin.id === originalId)
+                 console.log("coinDataFromLocalStorage", coinDataFromLocalStorage);
+            
+                     onCoinReceived(coinDataFromLocalStorage[0])
+                } else {  
+                 // haha cool if the coin is not there than obviously that more than 2 minutes passed so we should call the get api function
+                    //call the API function cause if not found then more than 2 minutes passed for that specific coin.
+                   //We don't want to show progressbar in the local storage case casue it immediate so we show the progress bar only when we grab Data from API
+                    $('.progressbar').show()
+                    $( ".progressbar" ).progressbar({
+                        // value: 37
+                        value: false
+                      });
+            
+                    getCoinDetailsFromAPI()
                 }
-           }
-            console.log('data', data)
-
-         let stringifiedData = JSON.stringify(data)
-         console.log("stringifiedData", stringifiedData);
+             }
+               
 
 
-        //  let dataSymbol = data.symbol
-         localStorage.setItem(data.symbol, stringifiedData)
-        
-        //  after 2 minutes gets deleted from local storage 
-         setTimeout(() => {
-             localStorage.removeItem(data.symbol)
-         },120000)
-// debugger
-       }
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DELETE THISSSSSSSSSSSSSSSSS
-        // S
 
-        // S
-        // S
-        // SS
-        // S
-       getCoinDetailsFromAPI()
-         // S
-
-        // S
-        // S
-        // SS
-        // S
-     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DELETE THISSSSSSSSSSSSSSSSS
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
                 function getCoinDetailsFromAPI() {
                     setTimeout(() => {
                             $.ajax({
@@ -294,8 +227,7 @@ $(() => {
                                 $('.progressbar').hide()          //?Dont forget to add this in the logic of the other two pages
                             }, 500);
                //end of getCoinnDetailsFromAPI function
-                }
-                
+                }          
   //End of after clicking more info button
   })
 
@@ -350,7 +282,7 @@ $(() => {
             }
         }
          })
-//End of forEach loop 
+//! End of forEach loop 
         })
     }
 
@@ -503,5 +435,5 @@ $(`<div class="modal-dialog modal-dialog-centered" role="document">
 
 
 
-
+//End of jquery wrapper
 })
