@@ -105,12 +105,13 @@
 
 
 
-            <div class="row" id="liveReports" style="display: none;">
-                <div class="col-12" id="appendajaxLiveReport">
+            <!-- <div class="row" id="liveReports" style="display: none;"> -->
+            <div class="row" id="liveReports">
+                <!-- <div class="col-12" id="appendajaxLiveReport"> -->
 
-
-                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                </div>
+                <!-- this line is in its on file now:  -->
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                <!-- </div> -->
             </div>
 
 
@@ -118,20 +119,21 @@
 
 
 
-            <div class="row" id="aboutMe" style="display: none;">
+            <!-- <div class="row" id="aboutMe" style="display: none;" id="appendajaxAboutMe"> -->
+            <div class="row" id="aboutMe">
                 <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2" id="appendajaxAboutMe"> -->
-                <div class="col-12" id="appendajaxAboutMe">
+                <!-- <div class="col-12" id="appendajaxAboutMe"> -->
 
-                    <div class="text-img">
-                        <!-- <figure><img src="images/toy_img.png" alt="#"/></figure> -->
+                <!-- <div class="text-img"> -->
+                <!-- <figure><img src="images/toy_img.png" alt="#"/></figure> -->
 
-                    </div>
-                </div>
             </div>
-
-            <!-- container end  -->
+            <!-- </div> -->
         </div>
-        <!-- This outer div is the jumbotrons -end  -->
+
+        <!-- container end  -->
+    </div>
+    <!-- This outer div is the jumbotrons -end  -->
     </div>
 
 
@@ -245,6 +247,7 @@
 
 
     <!-- <script type="module" src="graph.js"></script> -->
+    <script src="routing.js"></script>
     <script type="module" src="app.js"></script>
 
     <script>

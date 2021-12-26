@@ -6,7 +6,8 @@ import { setToLocalStorage } from './utilities.js'
 localStorage.setItem('moreInfoArr', JSON.stringify([]))
     // let coinsForGraph = ['', '', '', '', '']
     // let coinsForGraph = ['btc', 'eth', 'ltc', 'link', '']
-let coinsForGraph = ['btc', 'eth', 'ltc', 'link', 'doge']
+    // let coinsForGraph = ['btc', 'eth', 'ltc', 'link']
+let coinsForGraph = []
     // let coinsForGraph 
 let coins = [];
 let toggleBtnCount = 0
@@ -425,11 +426,11 @@ $(() => {
     // TODO put code another file           change nme of the array (make a copy so empty string work )     think about how to use  || and &&        Dont forget to add all the code only when user clicks live server casue now it runs automatically on start
 
     //!/%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    let dataPoints = [];
-    let dataPoints2 = [];
-    let dataPoints3 = [];
-    let dataPoints4 = [];
-    let dataPoints5 = [];
+    // let dataPoints1 = [];
+    // let dataPoints2 = [];
+    // let dataPoints3 = [];
+    // let dataPoints4 = [];
+    // let dataPoints5 = [];
     // let nameOfCoin = '';
 
     // let insertText = `${coinsForGraph[0].toUpperCase()}, ${coinsForGraph[1].toUpperCase()}, ${coinsForGraph[2].toUpperCase()}, ${coinsForGraph[3].toUpperCase()} ,${coinsForGraph[4].toUpperCase()} to USD`
@@ -466,7 +467,7 @@ $(() => {
 
     }
 
-
+    let dataList = []
 
 
 
@@ -498,79 +499,52 @@ $(() => {
             cursor: "pointer",
             itemclick: toggleDataSeries
         },
-        data: [{
-            type: "spline",
-            name: coinsForGraph[0].toUpperCase(),
-            showInLegend: true,
-            xValueFormatString: "MMM YYYY",
-            yValueFormatString: "$#,##0",
-            dataPoints: dataPoints
-        }, {
-            type: "spline",
-            name: coinsForGraph[1].toUpperCase(),
-            showInLegend: true,
-            xValueFormatString: "MMM YYYY",
-            yValueFormatString: "$#,##0",
-            dataPoints: dataPoints2
-        }, {
-            type: "spline",
-            name: coinsForGraph[2].toUpperCase(),
-            showInLegend: true,
-            xValueFormatString: "MMM YYYY",
-            yValueFormatString: "$#,##0",
-            dataPoints: dataPoints3
-        }, {
-            type: "spline",
-            name: coinsForGraph[3].toUpperCase(),
-            showInLegend: true,
-            xValueFormatString: "MMM YYYY",
-            yValueFormatString: "$#,##0",
-            dataPoints: dataPoints4
-        }, {
-            type: "spline",
-            name: coinsForGraph[4].toUpperCase(),
-            showInLegend: true,
-            xValueFormatString: "MMM YYYY",
-            yValueFormatString: "$#,##0",
-            dataPoints: dataPoints5
-        }]
+        data: dataList
     };
 
 
 
+    function initData() {
+        coinsForGraph.forEach(coin => {
+            dataList.push({
+                type: "spline",
+                name: coin.toUpperCase(),
+                showInLegend: true,
+                xValueFormatString: "MMM YYYY",
+                yValueFormatString: "$#,##0",
+                dataPoints: []
+            })
+        })
+
+
+    }
 
 
 
 
     $("#chartContainer").CanvasJSChart(options);
+
+    // $('#live-reports-btn').click(function() {
+    // has to be automatic 
+    initData()
     updateData();
-
-    function addData(data, one, two, three, four, five) {
-        console.log('data', data)
-            // console.log('data.BTC.USD', data.BTC.USD)
-        console.log('one', one)
-        console.log('two', two)
-        console.log('three', three)
-        console.log('four', four)
-        console.log('five', five)
-
-        // console.log('data[one.toUpperCase()].USD', data[one.toUpperCase()].USD)
-
-        one && dataPoints.push({ x: new Date(), y: data[one.toUpperCase()].USD });
-        // giving it as a varaible name doesnt work : 
-        // nameOfCoin = one.toUpperCase()
-        // console.log('nameOfCoin', nameOfCoin)
+    // })
 
 
-        //?Adding more coins to graph:
+    // STeps: 
+    // 1.Loop over the data --> forEach coin find the element in the dataList array according to the name of the coin
+    //2. We can find the right element by filtering that dataList by the name of the coin
+    // 3. When we get the right element we will add the { x: new Date(), y: data[val].USD } to the dataPoint aray of that specific coin
+    function addData(data) {
+        if (data.Data) return
+        console.log('data', data) //{{},{}}  {BTC: {…}, ETH: {…}, LTC: {…}, LINK: {…}, DOGE: {…}}BTC: {USD: 50251}DOGE: {USD: 0.1895}ETH: {USD: 4063.76}LINK: {USD: 23.12}LTC: {USD: 155.44}[[Prototype]]: Object
 
-        two && dataPoints2.push({ x: new Date(), y: data[two.toUpperCase()].USD });
-        // console.log('data[two.toUpperCase()].USD', data[two.toUpperCase()].USD)
+        for (let coinName in data) {
+            let coinLineSpecific = dataList.find(coinLine => coinLine.name === coinName)
 
-        three && dataPoints3.push({ x: new Date(), y: data[three.toUpperCase()].USD });
-        four && dataPoints4.push({ x: new Date(), y: data[four.toUpperCase()].USD });
-        five && dataPoints5.push({ x: new Date(), y: data[five.toUpperCase()].USD });
+            coinLineSpecific.dataPoints.push({ x: new Date(), y: data[coinName].USD })
 
+        }
 
 
         $("#chartContainer").CanvasJSChart().render()
@@ -587,11 +561,40 @@ $(() => {
         let four = coinsForGraph[3]
         let five = coinsForGraph[4]
             // $.getJSON(url, data, success);
-        $.getJSON(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${one},${two},${three},${four},${five}&tsyms=USD`, function(data) {
-            //?This is my solution: is there any other better way to do this?? i need to pass variables
-            addData(data, one, two, three, four, five)
-        });
+            // $.getJSON(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${one},${two},${three},${four},${five}&tsyms=USD`, function(data) {
+            //     //?This is my solution: is there any other better way to do this?? i need to pass variables
+            //     addData(data, one, two, three, four, five)
+            // });
+
+        // let url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms='
+        // coinsForGraph.forEach((coin, index)=> {
+        //  url +=  coin
+        //  if (index === coinsForGraph.length - 1) {
+        //      url += ''
+        //  } else {
+        //      url += ','
+        //  }
+        // })
+
+        let url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms='
+        coinsForGraph.forEach((coin, index) => {
+            url += coin
+            if (index < coinsForGraph.length - 1) {
+                url += ','
+            }
+
+        })
+
+        url += '&tsyms=USD'
+
+
+
+
+
+        // $.getJSON(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${one},${two},${three},${four},${five}&tsyms=USD`, addData)
+        $.getJSON(url, addData)
     }
+
 
 
     function toggleDataSeries(e) {
@@ -606,250 +609,205 @@ $(() => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    // old code : 
-    //!/%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-    //Logic for Graph:
-    //   let graphTimeId = setTimeout(() => {
-    // setInterval(() => {
-    //     console.log('count', count)
-    //     coinsForGraph = coinsForGraph.map(coin => coin.toUpperCase())
-    //     console.log("coinsForGraph", coinsForGraph);
-    //     //!Change to coinsforgraphuppercase becusae you dont want to change origila array cause modal needs it lowercase i think
-    //     let one = coinsForGraph[0]
-    //     let two = coinsForGraph[1]
-    //     let three = coinsForGraph[2]
-    //     let four = coinsForGraph[3]
-    //     let five = coinsForGraph[4]
-    //     console.log('five', five)
-
-    //     $.get({
-    //         url: `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${one},${two},${three},${four},${five}&tsyms=USD`,
-    //         method: 'GET'
-    //     }).then(data => {
-
-    //         onFiveCoinDataRecieved(data, one, two, three, four, five)
-    //     })
-
-    // }, 10000)
-
-    // function onFiveCoinDataRecieved(data, one, two, three, four, five) {
-    //     //   debugger
-    //     console.log('data', data)
-    //     console.log(data[one].USD)
-    //     console.log(data[two].USD)
-    //     console.log(data[three].USD)
-    //     console.log(data[four].USD)
-    //     console.log(data[five].USD)
-
-    //     let obj = {
-    //         x: new Date(),
-    //         y: data[one].USD
-    //     }
-
-
-
-
-    //     let options = {
-    //         exportEnabled: true,
-    //         animationEnabled: true,
-    //         title: {
-    //             text: `${one}, ${two}, ${three}, ${four}, ${five} to USD`
-    //         },
-    //         subtitles: [{
-    //             text: "Click Legend to Hide or Unhide Data Series"
-    //         }],
-    //         axisX: {
-    //             title: "Time",
-    //             titleFontColor: "#4F81BC",
-    //             lineColor: "#4F81BC",
-    //             labelFontColor: "#4F81BC",
-    //             tickColor: "#4F81BC"
-    //         },
-    //         axisY: {
-    //             title: "Coin Value",
-    //             titleFontColor: "#4F81BC",
-    //             lineColor: "#4F81BC",
-    //             labelFontColor: "#4F81BC",
-    //             tickColor: "#4F81BC"
-    //         },
-    //         axisY2: {
-    //             title: "Profit in USD",
-    //             titleFontColor: "#C0504E",
-    //             lineColor: "#C0504E",
-    //             labelFontColor: "#C0504E",
-    //             tickColor: "#C0504E"
-    //         },
-    //         toolTip: {
-    //             shared: true
-    //         },
-    //         legend: {
-    //             cursor: "pointer",
-    //             itemclick: toggleDataSeries
-    //         },
-    //         data: [{
-    //                 type: "spline",
-    //                 name: `${one}`,
-    //                 showInLegend: true,
-    //                 xValueFormatString: "MMM YYYY",
-    //                 yValueFormatString: "$#,##0",
-    //                 dataPoints: [
-    // { x: undefined,  y: undefined },
-    // { x: undefined,  y: undefined },
-    // { x: undefined, y: undefined },
-    // { x: new Date(), y: data[one].USD },
-    // { x: new Date(2016, 3, 1),  y: 103 },
-    // { x: new Date(2016, 4, 1),  y: 93 },
-    // { x: new Date(2016, 5, 1),  y: 129 },
-    // { x: new Date(2016, 6, 1), y: 143 },
-    // { x: new Date(2016, 7, 1), y: 156 },
-    // { x: new Date(2016, 8, 1),  y: 122 },
-    // { x: new Date(2016, 9, 1),  y: 106 },
-    // { x: new Date(2016, 10, 1),  y: 137 },
-    // { x: new Date(2016, 11, 1), y: 142 }
-    //     ]
-    // },
-    // {
-    // 	type: "spline",
-    // 	name: "Profit",
-    // 	axisYType: "secondary",
-    // 	showInLegend: true,
-    // 	xValueFormatString: "MMM YYYY",
-    // 	yValueFormatString: "$#,##0.#",
-    // 	dataPoints: [
-    // 		{ x: new Date(2016, 0, 1),  y: 19034.5 },
-    // 		{ x: new Date(2016, 1, 1), y: 20015 },
-    // 		{ x: new Date(2016, 2, 1), y: 27342 },
-    // 		{ x: new Date(2016, 3, 1),  y: 20088 },
-    // 		{ x: new Date(2016, 4, 1),  y: 20234 },
-    // 		{ x: new Date(2016, 5, 1),  y: 29034 },
-    // 		{ x: new Date(2016, 6, 1), y: 30487 },
-    // 		{ x: new Date(2016, 7, 1), y: 32523 },
-    // 		{ x: new Date(2016, 8, 1),  y: 20234 },
-    // 		{ x: new Date(2016, 9, 1),  y: 27234 },
-    // 		{ x: new Date(2016, 10, 1),  y: 33548 },
-    // 		{ x: new Date(2016, 11, 1), y: 32534 }
-    // 	]
-    // }
-    //     ]
-    // };
-    // doesnt work: 
-    // let date = new Date()
-    // let currentSecond = date.toLocaleTimeString('it-IT')
-
-
-
-    //                                                                                                            options.data[0].dataPoints.push(obj)
-    // options.data[0].dataPoints[0].x = new Date()
-    // options.data[0].dataPoints[0].y =  data[one].USD
-
-
-    // options.data[0].dataPoints[1].x = new Date()
-    // options.data[0].dataPoints[1].y =  data[one].USD
-
-    // options.data[0].dataPoints[2].x = new Date()
-    // options.data[0].dataPoints[2].y =  data[one].USD
-
-
-
-
-
-
-
-
-
-    // options.data[0].dataPoints[0].x = new Date(2016, 0, 1)    // '21:56:16' new Date().toLocaleTimeString('en-IL')
-    //   options.data[1].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
-    //   options.data[2].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
-    //   options.data[3].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
-    //   options.data[4].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
-
-    //   options.data[0].dataPoints[0].y = 120  // 48572.68   data[one].USD
-    //   options.data[1].dataPoints[0].y   // 48572.68   data[two].USD
-    //   options.data[2].dataPoints[0].y   // 48572.68   data[three].USD
-    //   options.data[3].dataPoints[0].y   // 48572.68   data[four].USD
-    //   options.data[4].dataPoints[0].y   // 48572.68   data[five].USD
-
-
-    //     $("#chartContainer").CanvasJSChart(options);
-
-    //     function toggleDataSeries(e) {
-    //         if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-    //             e.dataSeries.visible = false;
-    //         } else {
-    //             e.dataSeries.visible = true;
-    //         }
-    //         e.chart.render();
-    //     }
-
-
-
-
-
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //End of jquery wrapper
 })
+
+
+
+
+
+
+
+
+
+
+
+
+// old code : 
+//!/%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+//Logic for Graph:
+//   let graphTimeId = setTimeout(() => {
+// setInterval(() => {
+//     console.log('count', count)
+//     coinsForGraph = coinsForGraph.map(coin => coin.toUpperCase())
+//     console.log("coinsForGraph", coinsForGraph);
+//     //!Change to coinsforgraphuppercase becusae you dont want to change origila array cause modal needs it lowercase i think
+//     let one = coinsForGraph[0]
+//     let two = coinsForGraph[1]
+//     let three = coinsForGraph[2]
+//     let four = coinsForGraph[3]
+//     let five = coinsForGraph[4]
+//     console.log('five', five)
+
+//     $.get({
+//         url: `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${one},${two},${three},${four},${five}&tsyms=USD`,
+//         method: 'GET'
+//     }).then(data => {
+
+//         onFiveCoinDataRecieved(data, one, two, three, four, five)
+//     })
+
+// }, 10000)
+
+// function onFiveCoinDataRecieved(data, one, two, three, four, five) {
+//     //   debugger
+//     console.log('data', data)
+//     console.log(data[one].USD)
+//     console.log(data[two].USD)
+//     console.log(data[three].USD)
+//     console.log(data[four].USD)
+//     console.log(data[five].USD)
+
+//     let obj = {
+//         x: new Date(),
+//         y: data[one].USD
+//     }
+
+
+
+
+//     let options = {
+//         exportEnabled: true,
+//         animationEnabled: true,
+//         title: {
+//             text: `${one}, ${two}, ${three}, ${four}, ${five} to USD`
+//         },
+//         subtitles: [{
+//             text: "Click Legend to Hide or Unhide Data Series"
+//         }],
+//         axisX: {
+//             title: "Time",
+//             titleFontColor: "#4F81BC",
+//             lineColor: "#4F81BC",
+//             labelFontColor: "#4F81BC",
+//             tickColor: "#4F81BC"
+//         },
+//         axisY: {
+//             title: "Coin Value",
+//             titleFontColor: "#4F81BC",
+//             lineColor: "#4F81BC",
+//             labelFontColor: "#4F81BC",
+//             tickColor: "#4F81BC"
+//         },
+//         axisY2: {
+//             title: "Profit in USD",
+//             titleFontColor: "#C0504E",
+//             lineColor: "#C0504E",
+//             labelFontColor: "#C0504E",
+//             tickColor: "#C0504E"
+//         },
+//         toolTip: {
+//             shared: true
+//         },
+//         legend: {
+//             cursor: "pointer",
+//             itemclick: toggleDataSeries
+//         },
+//         data: [{
+//                 type: "spline",
+//                 name: `${one}`,
+//                 showInLegend: true,
+//                 xValueFormatString: "MMM YYYY",
+//                 yValueFormatString: "$#,##0",
+//                 dataPoints: [
+// { x: undefined,  y: undefined },
+// { x: undefined,  y: undefined },
+// { x: undefined, y: undefined },
+// { x: new Date(), y: data[one].USD },
+// { x: new Date(2016, 3, 1),  y: 103 },
+// { x: new Date(2016, 4, 1),  y: 93 },
+// { x: new Date(2016, 5, 1),  y: 129 },
+// { x: new Date(2016, 6, 1), y: 143 },
+// { x: new Date(2016, 7, 1), y: 156 },
+// { x: new Date(2016, 8, 1),  y: 122 },
+// { x: new Date(2016, 9, 1),  y: 106 },
+// { x: new Date(2016, 10, 1),  y: 137 },
+// { x: new Date(2016, 11, 1), y: 142 }
+//     ]
+// },
+// {
+// 	type: "spline",
+// 	name: "Profit",
+// 	axisYType: "secondary",
+// 	showInLegend: true,
+// 	xValueFormatString: "MMM YYYY",
+// 	yValueFormatString: "$#,##0.#",
+// 	dataPoints: [
+// 		{ x: new Date(2016, 0, 1),  y: 19034.5 },
+// 		{ x: new Date(2016, 1, 1), y: 20015 },
+// 		{ x: new Date(2016, 2, 1), y: 27342 },
+// 		{ x: new Date(2016, 3, 1),  y: 20088 },
+// 		{ x: new Date(2016, 4, 1),  y: 20234 },
+// 		{ x: new Date(2016, 5, 1),  y: 29034 },
+// 		{ x: new Date(2016, 6, 1), y: 30487 },
+// 		{ x: new Date(2016, 7, 1), y: 32523 },
+// 		{ x: new Date(2016, 8, 1),  y: 20234 },
+// 		{ x: new Date(2016, 9, 1),  y: 27234 },
+// 		{ x: new Date(2016, 10, 1),  y: 33548 },
+// 		{ x: new Date(2016, 11, 1), y: 32534 }
+// 	]
+// }
+//     ]
+// };
+// doesnt work: 
+// let date = new Date()
+// let currentSecond = date.toLocaleTimeString('it-IT')
+
+
+
+//                                                                                                            options.data[0].dataPoints.push(obj)
+// options.data[0].dataPoints[0].x = new Date()
+// options.data[0].dataPoints[0].y =  data[one].USD
+
+
+// options.data[0].dataPoints[1].x = new Date()
+// options.data[0].dataPoints[1].y =  data[one].USD
+
+// options.data[0].dataPoints[2].x = new Date()
+// options.data[0].dataPoints[2].y =  data[one].USD
+
+
+
+
+
+
+
+
+
+// options.data[0].dataPoints[0].x = new Date(2016, 0, 1)    // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[1].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[2].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[3].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+//   options.data[4].dataPoints[0].x   // '21:56:16' new Date().toLocaleTimeString('en-IL')
+
+//   options.data[0].dataPoints[0].y = 120  // 48572.68   data[one].USD
+//   options.data[1].dataPoints[0].y   // 48572.68   data[two].USD
+//   options.data[2].dataPoints[0].y   // 48572.68   data[three].USD
+//   options.data[3].dataPoints[0].y   // 48572.68   data[four].USD
+//   options.data[4].dataPoints[0].y   // 48572.68   data[five].USD
+
+
+//     $("#chartContainer").CanvasJSChart(options);
+
+//     function toggleDataSeries(e) {
+//         if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+//             e.dataSeries.visible = false;
+//         } else {
+//             e.dataSeries.visible = true;
+//         }
+//         e.chart.render();
+//     }
+
+
+
+
+
+// }

@@ -33,7 +33,7 @@ span {
 
 .parallax {
     /* The image used */
-    background-image: url("./Bitcoin-parellelex.jpg");
+    background-image: url("./assets/Bitcoin-parellelex.jpg");
     /* Set a specific height */
     min-height: 500px;
     /* Create the parallax scrolling effect */
