@@ -57,83 +57,13 @@
                     <button type="button" class="btn btn-outline-success my-2 my-sm-0 search-btn" id="search-btn" name="search-btn">Search</button>
                 </form>
             </nav>
-            <!-- </div> -->
-            <!-- </div> -->
-
-
-
-
-            <!-- Displayed when clicked with bootstrap data-attribute  -->
-            <!-- Later create git switch branch with jquery way using event.currentTarget instaed of bootstrap data attributes  -->
-            <!-- <div class="collapse" id="collapsePrices1"> -->
-            <!-- do i need a card body???  And i cant use this maybe if i want to use jquery when click grab data from API -->
-            <div class="progressbar"></div>
-            <div class="row" id="homeBox">
-
-                <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2">
-                    
-                    <div class="card text-white bg-warning mb-3 border-info">
-                        <span class="custom-control custom-switch text-right">
-                            <input type="checkbox" class="custom-control-input " id="customSwitch1">
-                            <label class="custom-control-label" for="customSwitch1"></label>
-                        </span>
-                        <div class="card-body ">
-
-                            <h5 class="card-title text-black-50">BTC</h5>
-                            <p class="card-text text-black-50 ">Bitcoin</p>
-
-                            <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#bitcoin" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
-                        </div>
-                    </div>
-                    
-                    <div class="collapse" id="bitcoin"> -->
-
-                <!-- <div class="card text-white bg-success mb-3 border-warning">
-
-                            <img class="card-img-top" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" alt="btc pic">
-
-                            <div class="card-body ">
-                                <p class="card-text text-nowrap">USD: $43,000</p>
-                                <p class="card-text text-nowrap">Eur: €43,000</p>
-                                <p class="card-text text-nowrap">ILS: ₪43,000</p>
-                            </div>
-                    </div> -->
-
-                <!-- </div> -->
-            </div>
-
-
-
-
-            <!-- <div class="row" id="liveReports" style="display: none;"> -->
-            <div class="row" id="liveReports">
-                <!-- <div class="col-12" id="appendajaxLiveReport"> -->
-
-                <!-- this line is in its on file now:  -->
-                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                <!-- </div> -->
-            </div>
-
-
-
-
-
-
-            <!-- <div class="row" id="aboutMe" style="display: none;" id="appendajaxAboutMe"> -->
-            <div class="row" id="aboutMe">
-                <!-- <div class="col-12 col-md-4 col-lg-3 col-xl-2" id="appendajaxAboutMe"> -->
-                <!-- <div class="col-12" id="appendajaxAboutMe"> -->
-
-                <!-- <div class="text-img"> -->
-                <!-- <figure><img src="images/toy_img.png" alt="#"/></figure> -->
+           
+            <div id="main-container">
 
             </div>
-            <!-- </div> -->
+            <!-- container end  -->
         </div>
-
-        <!-- container end  -->
-    </div>
-    <!-- This outer div is the jumbotrons -end  -->
+        <!-- This outer div is the jumbotrons -end  -->
     </div>
 
 
@@ -147,70 +77,6 @@
 
 
 
-
-
-    <!-- modal code to be triggered:   -->
-    <!-- Button trigger modal -->
-    <!-- Need to change this button to be the toggle button  -->
-    <!-- This buttton is in my javascript code  -->
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="myModal" >
-        Launch demo modal
-      </button> -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <!-- //you can center it  with modal dialog centerdd -->
-        <!-- <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title " id="exampleModalLabel">To add **inject coin** to the list you must uncheck at least one of the other coins</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">
-                               
-                                <h5 class="">BTC-You need to inject what was chosen here</h5>
-                                <span class="custom-control custom-switch text-right">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch222">
-                                    <label class="custom-control-label" for="customSwitch222"></label>
-                                </span>
-                                <h5 class="">Eth</h5>
-                                <span class="custom-control custom-switch text-right">
-                                    <input type="checkbox" class="custom-control-input " id="customSwitch333">
-                                    <label class="custom-control-label" for="customSwitch333"></label>
-                                </span>
-                                <h5 class="">LTC</h5>
-                                <span class="custom-control custom-switch text-right">
-                                    <input type="checkbox" class="custom-control-input " id="customSwitch1">
-                                    <label class="custom-control-label" for="customSwitch1"></label>
-                                </span>
-                                <h5 class="">BTC</h5>
-                                <span class="custom-control custom-switch text-right">
-                                    <input type="checkbox" class="custom-control-input " id="customSwitch1">
-                                    <label class="custom-control-label" for="customSwitch1"></label>
-                                </span>
-                                <h5 class="">BTC</h5>
-                                <span class="custom-control custom-switch text-right">
-                                    <input type="checkbox" class="custom-control-input " id="customSwitch1">
-                                    <label class="custom-control-label" for="customSwitch1"></label>
-                                </span>
-                              
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary ">Save changes</button>
-                </div>
-            </div>
-        </div> -->
-    </div>
 
 
 
@@ -247,8 +113,8 @@
 
 
     <!-- <script type="module" src="graph.js"></script> -->
-    <script src="routing.js"></script>
-    <script type="module" src="app.js"></script>
+  \
+    <script src="app.js"></script>
 
     <script>
     </script>
