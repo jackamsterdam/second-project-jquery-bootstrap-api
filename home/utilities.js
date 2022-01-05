@@ -2,9 +2,6 @@
 //?  getCoinDetailsFromAPI is not defined if you put the getCoinFromLocalStorage as an export why is this?
 //btw you didnt add this file in html
 
-
-
-
  function setToLocalStorage(dataFromAPI) {
     //You could have initialized to an empty array instead of adding moreInfoArr on start of program 
     //first get the arr from localStorage
@@ -46,42 +43,15 @@
 
         }, 10000) //every 2 min
 
-
-
     let arrStringified = JSON.stringify(parsedArrFromLocalStorage)
         // //is there a way to push to an array in localstorage? I think not. seems inneficient this way
     localStorage.setItem('moreInfoArr', arrStringified)
 
     // //  after 2 minutes gets deleted from local storage 
-
-
-
-
-    //???????????????????? actually will put all this in an array:
-    //  let stringifiedData = JSON.stringify(data)
-    //  console.log("stringifiedData", stringifiedData);
-
-
-    // //  let dataSymbol = data.symbol
-    //  localStorage.setItem(data.symbol, stringifiedData)
-
-    // //  after 2 minutes gets deleted from local storage 
-    //  setTimeout(() => {
-    //      localStorage.removeItem(data.symbol)
-    //  },120000)
-    // debugger
 }
 
 
-
-
-
-
 // more info: 
-
-//   getcoinsfrom localstorage logic + progressbar logic
-//The arr for local storage has nothing to do with the togglebtn arr coinsForGraph BTW
-//  if () {
 
 //This is what you local storage data should look like
 // localStorageArr = [data, data, data]
@@ -98,13 +68,3 @@
 //         large:  "https://assets.coingecko.com/coi00.jpg?154704158"
 //     }
 // }
-// localStorageArr.filter(coin => coin.id === )
-//     //  onCoinReceived(data)
-//     onCoinReceived(localStorageArr[0])
-//  }
-
-//     setItemForLocalStorage([])
-//     function setItemForLocalStorage(arr) {
-
-//        localStorage.setItem('coinsFromApi', JSON.stringify(arr))
-//    }

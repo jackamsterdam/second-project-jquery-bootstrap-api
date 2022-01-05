@@ -1,8 +1,9 @@
-let coinsForGraph = []
-let sixthCoin;
+let coinsForGraph = [];
 let coins = [];
-let count = 0
-let coinsForSearch = []
+let tempInisdeModalToggledCoins = [];   
+let sixthCoin = [];
+let liveReportIsRunning = false;
+
 
 $(() => {
     //by default, set the home page
@@ -10,48 +11,47 @@ $(() => {
         $('#main-container').append(result);
     }});
 
-       //About me routing
-   
-        $.ajax({
-                url: 'about/about.html'
-            })
-            .then(html => {
-              
-                $('#main-container').append(html)
-                $('#aboutMe').hide()
+    //About me routing
+    $.ajax({
+        url: 'about/about.html'
+    })
+    .then(html => {
+        $('#aboutMe').hide()
+        $('#main-container').append(html)
+    })
 
-            })
-    
-
-    // navbar functionality with simple  jquery 
-    // let $homeBox = $('#homeBox')
-    // let $liveReportsBox = $('#liveReports')
-    // let $aboutMeBox = $('#aboutMe')
+    // live reports
+    $.ajax({
+        url: 'live-reports/liveReports.html'
+    })
+    .then(html => {
+        $('#liveReports').hide()
+        $('#main-container').append(html)
+    })
 
     $('#home-btn').click(function() {
         $('#homeBox').show()
-        $('#liveReports').remove()
+        $('#liveReports').hide()
         $('#aboutMe').hide()
+        liveReportIsRunning = false;
+        $('#search-form').show()
     })
 
     $('#live-reports-btn').click(function() {
-        $('#liveReports').empty()
-
-        $.ajax({
-                url: 'live-reports/liveReports.html'
-            })
-            .then(html => {
-               
-                $('#main-container').append(html)
-                $('#homeBox').hide()
-                $('#aboutMe').hide()
-            })
+        $('#homeBox').hide()
+        $('#aboutMe').hide()
+        $('#liveReports').show()
+        liveReportIsRunning = true;
+        $('#search-form').hide()
     })
 
     $('#about-me-btn').click(function() {
-        $('#aboutMe').show()
         $('#homeBox').hide()
-        $('#liveReports').empty()
+        $('#liveReports').hide()
+        $('#aboutMe').show()
+        liveReportIsRunning = false;
+        $('#search-form').hide()
+
     })
 
     $('.nav-item a').click(function() {
@@ -60,6 +60,5 @@ $(() => {
         console.log('event.Target', event.Target)
         $('.active').removeClass('active')
         $(this).parent().addClass('active')
-
     })
 })
