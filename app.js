@@ -16,8 +16,8 @@ $(() => {
         url: 'about/about.html'
     })
     .then(html => {
-        $('#aboutMe').hide()
         $('#main-container').append(html)
+        $('#aboutMe').hide()
     })
 
     // live reports
@@ -25,8 +25,8 @@ $(() => {
         url: 'live-reports/liveReports.html'
     })
     .then(html => {
-        $('#liveReports').hide()
         $('#main-container').append(html)
+        $('#liveReports').hide()
     })
 
     $('#home-btn').click(function() {

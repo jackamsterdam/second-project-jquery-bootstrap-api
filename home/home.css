@@ -1,0 +1,29 @@
+.body-wrap {
+    /* position: relative; */
+}
+
+.main-card {
+    height: 150px;
+}
+
+.toggle-btn {
+    position: absolute;
+    right: 0;
+}
+
+.coin-title {
+    font-size: 26px;
+    color: black;
+    position: absolute;
+    top: 11px;
+}
+
+.main-card-text {
+    position: absolute;
+    top: 54px
+}
+
+.more-info {
+    position: absolute;
+    bottom: 10px;
+}

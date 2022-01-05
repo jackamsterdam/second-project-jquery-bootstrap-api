@@ -58,17 +58,15 @@ $(() => {
 
     function buildCoin(val, coin) {
         let $coinList = $(`<div class="col-12 col-md-4 col-lg-3 col-xl-2 forSearch">
-        <div class="card text-white bg-warning mb-3 border-info">
-            <span class="custom-control custom-switch text-right">
+        <div class="card text-white bg-warning mb-3 border-info main-card">  
+           <div class="card-body">
+              <span class="custom-control custom-switch text-right toggle-btn">
                 <input type="checkbox" class="custom-control-input" id=${coin.symbol}>
                 <label class="custom-control-label" for=${coin.symbol}></label>
-            </span>
-            <div class="card-body ">
-        
-                <h5 class="card-title text-black-50">${coin.symbol}</h5>
-                <p class="card-text text-black-50 ">${coin.name}</p>
-        
-                <button type="button" class="btn btn-primary btn-sm card-link text-nowrap" data-toggle="collapse" data-target="#${val}" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+              </span>
+              <div class="card-title coin-title">${coin.symbol}</div>
+              <div class="main-card-text card-text text-black-50 ">${coin.name}</div>
+                <button type="button" class="btn btn-primary btn-sm card-link text-nowrap more-info" data-toggle="collapse" data-target="#${val}" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
             </div>
         </div>
         <div class="collapse" id="${val}"></div>
