@@ -3,7 +3,7 @@ let coins = [];
 let tempInisdeModalToggledCoins = [];   
 let sixthCoin = [];
 let liveReportIsRunning = false;
-
+let originalCoins = [];
 
 $(() => {
     //by default, set the home page

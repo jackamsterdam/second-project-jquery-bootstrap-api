@@ -19,6 +19,8 @@ $(() => {
         .then(data => {
             // data.slice(0,10).forEach(coin => coinsForSearch.push(coin.symbol))
             coins = [...data]
+            originalCoins = [...data]; // in order to save the original coins came from the ajax call
+
             console.log("coins", coins);
             // display all the recieved coins on a page
             onAllCoinsReceived()
@@ -339,50 +341,61 @@ $(() => {
     //Debounce
     let timeout = null
     $('#search').on('keyup', function(e) {
+        debugger
         clearTimeout(timeout)
         timeout = setTimeout(() => {
             console.log('hi')
             console.log('($this).val()', $(this).val())
             console.log('e.key', e.key)
+            debugger
             displaySearchedCoins($(this).val())
         }, 1000)
+    })
 
+    // on clear search
+    $('input[type=search]').on('search', function() {
+        debugger
+        coins = [...originalCoins]
+        // display all the recieved coins on a page
+        onAllCoinsReceived();
     })
 
     function displaySearchedCoins(word) {
-        console.log('word', word.toLowerCase())
+        let result = originalCoins.filter(coin => coin.symbol === word.toLowerCase())
+        $('#homeBox').empty();
 
-        let result = coins[0].filter(coin => coin.symbol === word.toLowerCase())
-            // let result = searchArr[0].slice(0, 10).filter(coin => coin.symbol === word.toLowerCase())
+        // if the searched value is empty, show all the coins
+        if (word === '') {
+            coins = [...originalCoins]
+        } else {
+            coins = [...result]
+        }
+        
+        // display all the recieved coins on a page
+        onAllCoinsReceived();
 
+         // uncheck each coin
+        coinsForGraph.forEach(coin => {
+            $('#' + coin)[0].checked = true;
+        })
 
-        // let result = searchArr[0].slice(0, 10).filter(coin => coin.symbol === e.toLowerCase())
-        // let result = searchArr[0].slice(0, 10).filter(coin => coin.symbol === e)
-        // let result = searchArr[0].slice(0, 10).filter(coin => coin.symbol === 'zoc')
-        // what about assaf way? see assafs lesson two code and also see next two lines: 
-        // coinsForGraph = coinsForGraph.filter(coin => untoggledCoin.includes(coin))
-        //// coinsForGraph = coinsForGraph.filter(coin => !(untoggledCoin.indexOf(coin) != -1))
-        displayOnScreen(result)
     }
     //!PAY attention if you displaying 10 coins only on screen you wont see the id yet of the coin cause doent exist yet  so use zoc for now 
-    function displayOnScreen(result) {
-        console.log('result', result)
-        console.log('result[0]', result[0])
-        console.log('result[0].symbol', result[0].symbol)
+    // function displayOnScreen(result) {
+    //     debugger
+    //     $('#homeBox').empty();
+    //     if (result.length > 0) {
+    //         result.forEach(coin => {
+    //             $('#homeBox').append($('#' + coin.symbol))
+    //            // $('#' + coin.symbol).show()
+    //             //$('#homeBox').html($('#' + coin.symbol))
+    //         })
+    //     } else {
+    //        // $('#homeBox').html('')
+    //     }
+    //         // $('#homeBox').append($('#' + result[0].symbol).closest('.forSearch'))
 
-        // $('#homeBox').html(result)
-        // $('#homeBox').append(result)
-
-        console.log('jquery object with id of  coin', $('#' + result[0].symbol))
-        console.log('jquery object with id of coin.closest(".forSearch")', $('#' + result[0].symbol).closest('.forSearch'))
-
-
-        //! if user doesnt enter exactly the word then: Cannot read properties of undefined (reading 'symbol') cause im using jquery to grab them cant grab something not there
-        //!     which one????? html or append??? and i can only enter one coin! after that more dont work plus cant go back to previous screen plus if you enter a different coin it doesnt work anymore
-        $('#homeBox').html($('#' + result[0].symbol).closest('.forSearch'))
-            // $('#homeBox').append($('#' + result[0].symbol).closest('.forSearch'))
-
-    }
+    // }
 
 
 })
