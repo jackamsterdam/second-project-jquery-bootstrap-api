@@ -47,6 +47,7 @@
         for (let name of coinsForGraph) {
             count++
             if (name && count == 5) {
+          // if (name && (count == 5 || count == 1)) {
                 str += name.toUpperCase() + ' '
             } else if (name) {
                 str += name.toUpperCase() + ', '

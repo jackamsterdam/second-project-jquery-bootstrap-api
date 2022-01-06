@@ -19,6 +19,7 @@ $(() => {
         });
 
         // getJSON('https://api.coingecko.com/api/v3/coins/list')
+        // getJSON(config.allCoins)
         $.ajax({
             // url: 'https://api.coingecko.com/api/v3/coins/list',
             url: config.allCoins,
