@@ -10,6 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    
     <link rel="shortcut icon" href="https://media-exp1.licdn.com/dms/image/C5603AQHmX8cZGgr7YA/profile-displayphoto-shrink_100_100/0/1614775409537?e=1644451200&v=beta&t=cYbBX4oaUlRs2jTUir0ei4a5j3dCsvrgUm09Jgk87KQ" type="image/x-icon">
 
     <!-- jquery css   -->
@@ -20,12 +21,13 @@
 <body>
     <!-- Attach to container or to body on load? -->
 
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container-fluid">
-            <div class="parallax"></div>
-            <h1 class="display-4">Cryptonite</h1>
+    <!-- <div class="jumbotron jumbotron-fluid"> -->
+        <div class="container-fluid parallax">
+            
+            <!-- <div class="parallax"></div> -->
+            <div class="display-4 headline">Cryptonite by Jack A.</div>
             <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579" height="50">
-            <nav class="navbar sticky-top navbar-expand navbar-light bg-light">
+            <nav class="coins-nav-bar navbar sticky-top navbar-expand">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" id="home-btn" href="#">Home <span class="sr-only">(current)</span></a>
@@ -38,16 +40,18 @@
                     </li>
                 </ul>
                 <form class="form-inline  my-2 my-lg-0" id="search-form">
-                    <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" name="search" id="search" placeholder="Search">
+                    <input class="form-control mr-sm-2 searchbar" type="search" placeholder="Search" aria-label="Search" name="search" id="search" placeholder="Search">
                     <!-- more options: btn-sm btn-lg  -->
                     <!-- <div class="d-flex justify-content-center">...</div> -->
                     <!-- <button type="button" class="btn btn-outline-success my-2 my-sm-0 search-btn" id="search-btn" name="search-btn">Search</button> -->
                 </form>
+                <div class="progressbar progress">
             </nav>
+            
             <div id="main-container">
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 
     <!-- jquery cdn:  -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

@@ -3,12 +3,13 @@
 }
 
 .main-card {
-    height: 150px;
+    height: 180px;
 }
 
 .toggle-btn {
     position: absolute;
     right: 0;
+    z-index: 1;
 }
 
 .coin-title {
@@ -26,4 +27,43 @@
 .more-info {
     position: absolute;
     bottom: 10px;
+    font-weight: bold;
+}
+
+.modal-span {
+    top: -22px;
+}
+
+.more-info-img {
+    height: 240px;
+}
+
+.card-desc {
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: white;
+    width: 200px;
+}
+
+.card {
+    border-radius: 8px;
+    transition: transform 0.1s;
+}
+
+.card:hover {
+  cursor:pointer;
+  transform: scale(1.03)
+}
+
+#homeBox {
+    height: 100%;
+    min-height: 100vh;
+    margin-top: 32px;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff!important;
+    border-color: orange!important;
+    background-color: orange!important;
 }

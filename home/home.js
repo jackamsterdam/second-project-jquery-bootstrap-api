@@ -12,6 +12,14 @@ $(() => {
     * After an ajax call, all the coins get displayed in boxes on the pae
     */
     function init() {
+        // activate the progressbar 
+        $('.progressbar').show()
+        $(".progressbar").progressbar({
+            // value: 37
+            value: false
+        });
+
+
         $.ajax({
             url: 'https://api.coingecko.com/api/v3/coins/list',
             method: 'GET'
@@ -55,20 +63,24 @@ $(() => {
 
             // modal functionality
             registerEventForCoinSwitch(coin);
+
+            //Hide the progressbar 
+            $('.progressbar').hide()
+
         })
     }
 
     function buildCoin(val, coin) {
         let $coinList = $(`<div class="col-12 col-md-4 col-lg-3 col-xl-2 forSearch">
-        <div class="card text-white bg-warning mb-3 border-info main-card">  
+        <div class="card text-white bg-dark mb-3 border-warning main-card">  
            <div class="card-body">
-              <span class="custom-control custom-switch text-right toggle-btn">
+              <span class="custom-control custom-switch text-right toggle-btn bg-dark">
                 <input type="checkbox" class="custom-control-input" id=${coin.symbol}>
                 <label class="custom-control-label" for=${coin.symbol}></label>
               </span>
-              <div class="card-title coin-title">${coin.symbol}</div>
-              <div class="main-card-text card-text text-black-50 ">${coin.name}</div>
-                <button type="button" class="btn btn-primary btn-sm card-link text-nowrap more-info" data-toggle="collapse" data-target="#${val}" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
+              <div class="card-title coin-title card-desc" title="${coin.symbol}">${coin.symbol}</div>
+              <div class="main-card-text card-text">${coin.name}</div>
+                <button type="button" class="btn btn-warning btn-sm card-link text-nowrap more-info" data-toggle="collapse" data-target="#${val}" aria-expanded="false" aria-controls="collapsePrices">More Info</button>
             </div>
         </div>
         <div class="collapse" id="${val}"></div>
@@ -138,6 +150,37 @@ $(() => {
         }, 500);
     }
 
+    function onCoinReceived(data) {
+        console.log('dataoncoinReceived', data)
+        console.log('dataoncoinReceived', data)
+        let val = 'id-' + data.id
+        if (!data.market_data.current_price.usd) {
+            $(`<div class="card text-white bg-dark mb-3 border-warning">
+
+            <img class="card-img-top more-info-img" src="${data.image.large}" alt="btc pic">
+    
+            <div class="card-body ">
+                <p class="card-text text-nowrap">USD: No Data Available</p>
+                <p class="card-text text-nowrap">Eur: No Data Available</p>
+                <p class="card-text text-nowrap">ILS: No Data Available</p>
+            </div>
+        </div>`).appendTo('#' + val)
+        } else {
+
+
+            $(`<div class="card text-white bg-dark mb-3 border-warning">
+
+        <img class="card-img-top  more-info-img" src="${data.image.large}" alt="btc pic">
+
+        <div class="card-body ">
+            <p class="card-text text-nowrap">USD: $${data.market_data.current_price.usd}</p>
+            <p class="card-text text-nowrap">Eur: €${data.market_data.current_price.eur}</p>
+            <p class="card-text text-nowrap">ILS: ₪${data.market_data.current_price.ils}</p>
+        </div>
+    </div>`).appendTo('#' + val)
+        }
+    }
+
     function registerEventForCoinSwitch(coin) {
         $('#' + coin.symbol).click(function(e) {
             console.log("tempInisdeModalToggledCoins before click ", tempInisdeModalToggledCoins);
@@ -178,7 +221,6 @@ $(() => {
     function onTheSixthCoin(event) {
 
        //initilize the temp array with the last selected coins
-       debugger
         tempInisdeModalToggledCoins = [...coinsForGraph];
 
         // we need the temp coins array on the start to hold all 5 coins that went into coinsForGraph and will be displayed in modal: but we need to add the future extension as well
@@ -197,7 +239,7 @@ $(() => {
 
     function addModalTitle(sixthCoinId){
         $('.modal-header').empty()
-        $(`<h5 class="modal-title" id="exampleModalLabel">To add ${sixthCoinId} to the list you must uncheck at least one of the other coins</h5>`).prependTo('.modal-header')
+        $(`<h5 class="modal-title font-weight-bold" id="exampleModalLabel">To add <span class="text-warning">${sixthCoinId}</span> to the list you must uncheck at least one of the other coins</h5>`).prependTo('.modal-header')
     }
 
     function openModelPopUp() {
@@ -209,7 +251,7 @@ $(() => {
         $('#appendfivemodalCoins').empty()
         coinsForGraph.forEach(coin => {
             let $coinInModal = $(`<h5 class="modal-title">${coin}</h5>
-            <span class="custom-control custom-switch text-right">
+            <span class="custom-control custom-switch text-right modal-span">
                 <input type="checkbox" class="custom-control-input " id="coin-${coin}" checked>
                 <label class="custom-control-label" for="coin-${coin}"></label>
             </span>`)
@@ -280,7 +322,6 @@ $(() => {
       //Now we should uncheck all the unchecked coins in the modal
       //In order to find all the coins that should be unchecked we will loop over the coinForGraph array and check which coin is not chosen in the modal, it means it doesn'nt exist in arrWithIdMatchMainPage
 
- debugger
       // a new array with all coins that should be unchecked
       let coinsToUnCheck = coinsForGraph.filter(coin => !tempInisdeModalToggledCoins.includes(coin))
 
@@ -302,59 +343,33 @@ $(() => {
 
     }
 
-    // ****************************************************************************************
-    //you can put this function before the previous one i just put it below so will be easier to work on modal
-    function onCoinReceived(data) {
-        //    debugger
-        console.log('dataoncoinReceived', data)
-        console.log('dataoncoinReceived', data)
-        let val = 'id-' + data.id
-        if (!data.market_data.current_price.usd) {
-            $(`<div class="card text-white bg-success mb-3 border-warning">
-
-            <img class="card-img-top" src="${data.image.large}" alt="btc pic">
-    
-            <div class="card-body ">
-                <p class="card-text text-nowrap">USD: No Data Available</p>
-                <p class="card-text text-nowrap">Eur: No Data Available</p>
-                <p class="card-text text-nowrap">ILS: No Data Available</p>
-            </div>
-        </div>`).appendTo('#' + val)
-        } else {
-
-
-            $(`<div class="card text-white bg-success mb-3 border-warning">
-
-        <img class="card-img-top" src="${data.image.large}" alt="btc pic">
-
-        <div class="card-body ">
-            <p class="card-text text-nowrap">USD: $${data.market_data.current_price.usd}</p>
-            <p class="card-text text-nowrap">Eur: €${data.market_data.current_price.eur}</p>
-            <p class="card-text text-nowrap">ILS: ₪${data.market_data.current_price.ils}</p>
-        </div>
-    </div>`).appendTo('#' + val)
-        }
-    }
+  
 
     
     //Search bar functionality: 
     //Debounce
     let timeout = null
     $('#search').on('keyup', function(e) {
-        debugger
+        
+        // if (e.keyCode === 13) {
+        //     event.preventDefault();
+        //     form.reset();
+
+        //     return false
+        // } else {
         clearTimeout(timeout)
         timeout = setTimeout(() => {
             console.log('hi')
             console.log('($this).val()', $(this).val())
             console.log('e.key', e.key)
-            debugger
             displaySearchedCoins($(this).val())
         }, 1000)
+    // }
     })
+
 
     // on clear search
     $('input[type=search]').on('search', function() {
-        debugger
         coins = [...originalCoins]
         // display all the recieved coins on a page
         onAllCoinsReceived();
@@ -382,7 +397,6 @@ $(() => {
     }
     //!PAY attention if you displaying 10 coins only on screen you wont see the id yet of the coin cause doent exist yet  so use zoc for now 
     // function displayOnScreen(result) {
-    //     debugger
     //     $('#homeBox').empty();
     //     if (result.length > 0) {
     //         result.forEach(coin => {

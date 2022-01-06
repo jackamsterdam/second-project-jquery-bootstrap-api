@@ -55,7 +55,6 @@ $(() => {
     })
 
     $('.nav-item a').click(function() {
-        // debugger
         console.log('event.currentTarget', event.currentTarget)
         console.log('event.Target', event.Target)
         $('.active').removeClass('active')

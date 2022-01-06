@@ -25,8 +25,6 @@
             large: dataFromAPI.image.large
         }
     }
-    console.log('data', data)
-        // debugger
     parsedArrFromLocalStorage.push(data)
         //Actually BAD IDEA to clear the timout becasue we want the user to grab from the API the latest coin prices every two minutes regardless if the user clicks multiple times on the same coin.
         //    clearTimeout(removedItem)
