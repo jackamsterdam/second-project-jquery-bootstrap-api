@@ -7,10 +7,12 @@
      })
 
     let options = {
+        theme: "dark1",
         exportEnabled: true,
         animationEnabled: true,
         title: {
-            text: ''
+            text: '',
+            fontSize: 25
         },
         subtitles: [{
             // text: coinsForGraph.every(coin => coin === '') || 'Click Legend to Hide or Unhide Data Series'

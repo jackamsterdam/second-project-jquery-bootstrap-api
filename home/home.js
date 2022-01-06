@@ -1,5 +1,4 @@
-/// <refernce path="config.js" />
-
+/// <reference path="config.js" />
 
 localStorage.setItem('moreInfoArr', JSON.stringify([]))
   
@@ -19,12 +18,14 @@ $(() => {
             value: false
         });
 
-
+        // getJSON('https://api.coingecko.com/api/v3/coins/list')
         $.ajax({
-            url: 'https://api.coingecko.com/api/v3/coins/list',
+            // url: 'https://api.coingecko.com/api/v3/coins/list',
+            url: config.allCoins,
             method: 'GET'
         })
         .then(data => {
+          
             // data.slice(0,10).forEach(coin => coinsForSearch.push(coin.symbol))
             coins = [...data]
             originalCoins = [...data]; // in order to save the original coins came from the ajax call
@@ -132,10 +133,12 @@ $(() => {
     function getCoinDetailsFromAPI(originalId) {
         //THis setTimout simulates a half second delay for the Api in order to show a progress bar
         setTimeout(() => {
-            $.ajax({
-                    url: `https://api.coingecko.com/api/v3/coins/${originalId}`, //the id not symbol
-                    method: 'GET'
-                })
+            // getJSON('https://api.coingecko.com/api/v3/coins/' + originalId)
+            getJSON(config.moreInfoCoin + originalId)
+            // $.ajax({
+            //         url: `https://api.coingecko.com/api/v3/coins/${originalId}`, //the id not symbol
+            //         method: 'GET'
+            //     })
                 .then(data => {
                     //every new call gets put into setLocalStorage and passes info to DOM
                     // But you would not even get here if the coin was found in localstorage - meaining 2 minutes have not passed 
