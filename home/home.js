@@ -292,7 +292,7 @@ $(() => {
     function registerOnSave() {
         let isSixthIn = false;
         // functionality when user hits SAVE
-        $('#save-modal-btn').click(function() {
+        $('#save-modal-btn').click(function(e) {
            
             console.log('coinsForGraph before save', coinsForGraph)
             console.log('tempInisdeModalToggledCoins before save', tempInisdeModalToggledCoins)
